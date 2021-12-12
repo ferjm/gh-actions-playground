@@ -1,0 +1,19 @@
+on:
+  push:
+    branches: # Push to following branches will trigger the workflow
+      - feature/**
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        # This may save additional git fetch roundtrip if
+        # merge-base is found within latest 20 commits
+        fetch-depth: 20
+    - uses: dorny/paths-filter@v2
+      id: filter
+      with:
+        base: develop # Change detection against merge-base with this branch
+        filters: ''
+        run: echo "Hello world"

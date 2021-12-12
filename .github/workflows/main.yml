@@ -15,5 +15,9 @@ jobs:
       id: filter
       with:
         base: develop # Change detection against merge-base with this branch
-        filters: ''
+        filters: |
+          backend:
+            - 'backend/**'
+          frontend:
+            - 'frontend/**'
         run: echo "Hello world"

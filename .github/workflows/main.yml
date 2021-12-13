@@ -20,6 +20,12 @@ jobs:
             - 'backend/**'
           frontend:
             - 'frontend/**'
+    - name: Comment in PR
+      if: steps.filter.outputs.backend == 'true'
+      uses: hollander/actions-comment-pull-request@v1
+      with:
+        message: 'Hello folks'
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: hello world
       if: steps.filter.outputs.backend == 'true'
       run: echo "Hello world backend"

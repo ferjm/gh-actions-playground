@@ -1,7 +1,4 @@
-on:
-  push:
-    branches: # Push to following branches will trigger the workflow
-      - feature/**
+on: pull_request
 jobs:
   build:
     runs-on: ubuntu-latest

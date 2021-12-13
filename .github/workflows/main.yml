@@ -20,4 +20,6 @@ jobs:
             - 'backend/**'
           frontend:
             - 'frontend/**'
-        run: echo "Hello world"
+    - name: hello world
+      if: steps.filter.outputs.backend == 'true'
+      run: echo "Hello world backend"

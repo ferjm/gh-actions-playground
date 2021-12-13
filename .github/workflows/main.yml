@@ -1,25 +1,13 @@
-on: pull_request
+on: [pull_request_target]
+
 jobs:
-  build:
+  checklist_job:
     runs-on: ubuntu-latest
+    name: Checklist job
     steps:
-    - uses: actions/checkout@v2
-      with:
-        # This may save additional git fetch roundtrip if
-        # merge-base is found within latest 20 commits
-        fetch-depth: 20
-    - uses: dorny/paths-filter@v2
-      id: filter
-      with:
-        filters: |
-          backend:
-            - 'backend/**'
-    - name: Comment in PR
-      if: steps.filter.outputs.backend == 'true' && ${{ github.event_name == 'pull_request' }}
-      uses: thollander/actions-comment-pull-request@v1
-      with:
-        message: '[] Do this \n [] Do that \n Do X'
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: hello world
-      if: steps.filter.outputs.backend == 'true'
-      run: echo "Hello world backend"
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Checklist
+        uses: wyozi/contextual-qa-checklist-action@master
+        with:
+          gh-token: ${{ secrets.GITHUB_TOKEN }}

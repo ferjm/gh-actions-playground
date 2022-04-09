@@ -1,0 +1,19 @@
+name: PRs reviews reminder
+
+on:
+  schedule:
+    # Every weekday every 2 hours during working hours, send notification
+    - cron: "* * * * *"
+
+jobs:
+  pr-reviews-reminder:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: davideviolante/pr-reviews-reminder-action@v1.5.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        webhook-url: 'https://hooks.slack.com/services/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' # Required
+        provider: 'slack' # Required (slack or msteams)
+        channel: '#notifications-test' # Optional, eg: #general
+        github-provider-map: '' # Optional, eg: "DavideViolante:UEABCDEFG,foobar:UAABCDEFG"

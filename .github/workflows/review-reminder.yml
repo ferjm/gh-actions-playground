@@ -3,7 +3,7 @@ name: PRs reviews reminder
 on:
   schedule:
     # Every 10 min
-    - cron: "*/10 * * * *"
+    - cron: "*/15 * * * *"
 
 jobs:
   pr-reviews-reminder:

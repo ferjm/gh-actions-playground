@@ -2,8 +2,8 @@ name: PRs reviews reminder
 
 on:
   schedule:
-    # Every 10 min
-    - cron: "*/15 * * * *"
+    # Every day at 10am
+    - cron: "0 10 * * *"
 
 jobs:
   pr-reviews-reminder:
@@ -16,4 +16,4 @@ jobs:
         webhook-url: 'https://hooks.slack.com/services/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' # Required
         provider: 'slack' # Required (slack or msteams)
         channel: '#notifications-test' # Optional, eg: #general
-        github-provider-map: '' # Optional, eg: "DavideViolante:UEABCDEFG,foobar:UAABCDEFG"
+        github-provider-map: 'ferjm:U02M6RDMEMU' # Optional, eg: "DavideViolante:UEABCDEFG,foobar:UAABCDEFG"

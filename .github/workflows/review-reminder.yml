@@ -2,8 +2,8 @@ name: PRs reviews reminder
 
 on:
   schedule:
-    # Every weekday every 2 hours during working hours, send notification
-    - cron: "*/5 * * * *"
+    # Every 10 min
+    - cron: "*/10 * * * *"
 
 jobs:
   pr-reviews-reminder:

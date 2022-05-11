@@ -1,31 +1,32 @@
-name: Semantic versioning
+name: 'Bump Version'
+
 on:
-  pull_request:
-    types:
-      - closed
+  push:
+    branches:
+      - 'master'
+
 jobs:
-  if_merged:
-    if: github.event.pull_request.merged == true
+  bump-version:
+    name: 'Bump Version on master'
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: 'Checkout source code'
+        uses: 'actions/checkout@v2'
         with:
-          fetch-depth: 0
-      - uses: paulhatch/semantic-version@v4.0.2
+          ref: ${{ github.ref }}
+      - name: 'cat package.json'
+        run: cat ./package.json
+      - name: 'Automated Version Bump'
+        id: version-bump
+        uses: 'phips28/gh-action-bump-version@master'
         with:
-          # The prefix to use to identify tags
-          tag_prefix: "v"
-          # A string which, if present in a git commit, indicates that a change represents a
-          # major (breaking) change, supports regular expressions wrapped with '/'
-          major_pattern: "(MAJOR)"
-          # Same as above except indicating a minor change, supports regular expressions wrapped with '/'
-          minor_pattern: "(MINOR)"
-          # A string to determine the format of the version output
-          format: "${major}.${minor}.${patch}"
-          # If this is set to true, *every* commit will be treated as a new version.
-          bump_each_commit: false
-          # If true, the body of commits will also be searched for major/minor patterns to determine the version type.
-          search_commit_body: false
-          # The output method used to generate list of users, 'csv' or 'json'.
-          user_format_type: "json"
+          tag-prefix: 'v'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: 'cat package.json'
+        run: cat ./package.json
+      - name: 'Output Step'
+        env:
+          NEW_TAG: ${{ steps.version-bump.outputs.newTag }}
+        run: echo "new tag $NEW_TAG"

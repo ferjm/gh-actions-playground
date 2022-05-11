@@ -12,8 +12,6 @@ jobs:
         uses: 'actions/checkout@v2'
         with:
           ref: ${{ github.ref }}
-      - name: 'process.env.GITHUB_REF'
-        run: echo $GITHUB_HEAD_REF
       - name: 'Automated Version Bump'
         id: version-bump
         uses: 'ferjm/gh-action-bump-version@master'

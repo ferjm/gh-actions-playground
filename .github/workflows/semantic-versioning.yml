@@ -1,15 +1,12 @@
-name: 'Bump Version'
-
+name: Semantic versioning
 on:
-  push:
-    branches:
-      - 'master'
-
+  pull_request:
+    types:
+      - closed
 jobs:
-  bump-version:
-    name: 'Bump Version on master'
+  if_merged:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-
     steps:
       - name: 'Checkout source code'
         uses: 'actions/checkout@v2'

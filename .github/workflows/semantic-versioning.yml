@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         node-version: 
-        - 12
+        - 16
     steps: 
     - uses: phish108/autotag-action@1.1.37
       with:

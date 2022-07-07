@@ -12,7 +12,7 @@ jobs:
         node-version: 
         - 16
     steps: 
-    - uses: ferjm/autotag-action@1.1.56
+    - uses: ferjm/autotag-action@1.1.57
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         with-v: "true"

@@ -12,8 +12,8 @@ jobs:
         node-version: 
         - 16
     steps: 
-    - uses: phish108/autotag-action@1.1.37
+    - uses: phish108/autotag-action@1.1.47
       with:
         github-token: ${{ secrets.GITHUB_TOKEN}}
         with-v: "true"
-        issue-labels: "V-minor"
+        issue-labels: "minor"

@@ -15,13 +15,11 @@ jobs:
       - name: Get PR labels
         id: pr-labels
         uses: joerick/pr-labels-action@v1.0.6
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY }}
 
       # GITHUB_PR_LABEL_V_MINOR was set by pr-labels-action
       - run: |
           if [ -n "$GITHUB_PR_LABEL_V_MINOR" ]; then
-            git clone git@github.com:ferjm/gh-actions-playground.git
+            git clone https://$GITHUB\_TOKEN@github.com/ferjm/gh-actions-playground.git
             cd gh-actions-playground
             touch version
             echo minor > version

@@ -1,0 +1,29 @@
+name: Semantic versioning
+on:
+  pull_request:
+    types:
+      - closed
+jobs:
+  if_merged:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: 
+        - 16
+    steps:
+      - name: Get PR labels
+        id: pr-labels
+        uses: joerick/pr-labels-action@v1.0.6
+
+      # GITHUB_PR_LABEL_V_MINOR was set by pr-labels-action
+      - run: |
+          if [ -n "$GITHUB_PR_LABEL_TEST_FLIMBOMBLE" ]; then
+            git clone git@github.com:ferjm/gh-actions-playground.git
+            cd gh-actions-playground
+            touch version
+            echo minor > version
+            git add version
+            git commit -m "Next release will bump minor version"
+            git push origin main
+          fi

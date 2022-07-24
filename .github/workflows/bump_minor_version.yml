@@ -26,6 +26,6 @@ jobs:
             touch version
             echo minor > version
             git add version
-            git commit -m "Next release will bump minor version"
-            git push origin main
+            git commit -m "Next release will bump minor version" || true
+            git push origin main || true
           fi

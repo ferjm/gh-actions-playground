@@ -19,6 +19,8 @@ jobs:
       # GITHUB_PR_LABEL_V_MINOR was set by pr-labels-action
       - run: |
           if [ -n "$GITHUB_PR_LABEL_V_MINOR" ]; then
+            git config --global user.email "ferjmoreno@gmail.com"
+            git config --global user.name "Fernando Jimenez Moreno"
             git clone "https://ferjm:${{github.token}}@github.com/${{github.repository}}.git" 
             cd gh-actions-playground
             touch version

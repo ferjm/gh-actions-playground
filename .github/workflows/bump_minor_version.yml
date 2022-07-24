@@ -15,8 +15,6 @@ jobs:
       - name: Get PR labels
         id: pr-labels
         uses: joerick/pr-labels-action@v1.0.6
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       # GITHUB_PR_LABEL_V_MINOR was set by pr-labels-action
       - run: |

@@ -19,7 +19,7 @@ jobs:
       # GITHUB_PR_LABEL_V_MINOR was set by pr-labels-action
       - run: |
           if [ -n "$GITHUB_PR_LABEL_V_MINOR" ]; then
-            git clone https://${{ secrets.GITHUB_TOKEN }}@github.com/ferjm/gh-actions-playground.git
+            git clone "https://ferjm:${{github.token}}@github.com/${{github.repository}}.git" 
             cd gh-actions-playground
             touch version
             echo minor > version

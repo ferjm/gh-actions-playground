@@ -22,7 +22,7 @@ jobs:
             git config --global user.email "ferjmoreno@gmail.com"
             git config --global user.name "Fernando Jimenez Moreno"
             git clone "https://ferjm:${{secrets.GH_PAT}}@github.com/ferjm/gh-action-branch-naming.git" 
-            cd gh-actions-branch-naming
+            cd gh-action-branch-naming
             touch version
             echo minor > version
             git add version
